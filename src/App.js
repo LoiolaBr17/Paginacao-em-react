@@ -23,6 +23,10 @@ function App(){
       fetchData()
     }, [])
 
+    useEffect(() => {
+      setCurrentPage(0)
+    }, [itemPerPage])
+
     return (
         <div className="App">
 
@@ -32,10 +36,18 @@ function App(){
 
           <div>
             {Array.from(Array(pages), (item, index) => {
-              return <button value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}>{index}</button>
+              return <button value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}>{index + 1}</button>
             })}
           </div>
 
+          <div>
+            <select value={itemPerPage} onChange={(e) => setItensPerPage(Number(e.target.value))}>
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={25}>25</option>
+            </select>
+          </div>
 
         </div>
     );
